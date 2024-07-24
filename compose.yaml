@@ -1,0 +1,19 @@
+services:
+  roscore:
+    extends:
+      file: common.yaml
+      service: ros-desktop
+    command: roscore
+    healthcheck:
+      test: ["CMD-SHELL", "/bin/bash", "-c", "rostopic", "list"]
+      interval: 1s
+      retries: 5
+      timeout: 1s
+  rviz:
+    extends:
+      file: common.yaml
+      service: ros-desktop-full
+    depends_on:
+      roscore:
+        condition: service_healthy
+    command: rosrun rviz rviz
