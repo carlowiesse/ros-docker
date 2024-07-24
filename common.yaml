@@ -1,13 +1,9 @@
 services:
-
   ros-desktop:
     image: ghcr.io/sloretz/ros:humble-desktop
     network_mode: host
-
   ros-desktop-full:
-    extends:
-      file: common.yaml
-      service: ros-desktop
+    extends: ros-desktop
     image: ghcr.io/sloretz/ros:humble-desktop-full
     devices:
       - /dev/dri:/dev/dri

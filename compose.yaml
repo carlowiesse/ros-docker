@@ -1,5 +1,4 @@
 services:
-
   rviz:
     extends:
       file: common.yaml
