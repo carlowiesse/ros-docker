@@ -1,0 +1,18 @@
+services:
+
+  ros-desktop:
+    image: ghcr.io/sloretz/ros:humble-desktop
+    network_mode: host
+
+  ros-desktop-full:
+    extends:
+      file: common.yaml
+      service: ros-desktop
+    image: ghcr.io/sloretz/ros:humble-desktop-full
+    devices:
+      - /dev/dri:/dev/dri
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    environment:
+      - DISPLAY=$DISPLAY
+      - QT_X11_NO_MITSHM=1
